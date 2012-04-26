@@ -1,0 +1,11 @@
+#!/usr/bin/env node
+var server = require('../').createServer();
+server.listen(8000, function (err) {
+  if (err) {
+    throw err;
+  }
+
+  console.log([
+    'presents server listening on port 8000'
+  ].join('\n'));
+});
