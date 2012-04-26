@@ -1,0 +1,15 @@
+{
+  "name": "presents-server",
+  "version": "0.0.0",
+  "author": "Maciej Małecki <me@mmalecki.com>",
+  "main": "./lib/presents-server",
+  "dependencies": {
+    "ws": "0.4.x",
+    "union": "0.3.x",
+    "director": "1.0.x",
+    "ecstatic": "0.1.x"
+  },
+  "bin": {
+    "presents-server": "./bin/presents-server"
+  }
+}
