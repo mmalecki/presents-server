@@ -10,39 +10,12 @@
       <input type="submit" value="Save" />
     </form>
 
-    <h1><a href='#' onclick='previous();'>&lt;-</a></h1>
-    <h1><a href='#' onclick='next();'>-&gt;</a></h1>
+    <h1><a href='#' onclick='PresentsAPI.previous();'>&lt;-</a></h1>
+    <h1><a href='#' onclick='PresentsAPI.next();'>-&gt;</a></h1>
 
+    <script src='/admin/js/api.js'></script>
     <script>
       var password = '';
-
-      function request(options, callback) {
-        var req = new XMLHttpRequest();
-        req.open(options.method, options.url, true);
-        req.setRequestHeader('authorization', 'Basic ' + btoa('presenter:' + password));
-
-        req.onreadystatechange = function (e) {
-          if (req.readyState === 4) {
-            callback && callback(null, { statusCode: req.status }, req.responseText);
-          }
-        };
-
-        req.send();
-      }
-
-      function previous() {
-        request({
-          url: '/api/previous',
-          method: 'POST'
-        });
-      }
-
-      function next() {
-        request({
-          url: '/api/next',
-          method: 'POST'
-        });
-      }
 
       function submitPassword() {
         password = document.getElementById('password').value;
