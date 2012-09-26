@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset='utf-8' />
+    <link rel="stylesheet" href="/admin/css/style.css" />
     <title>Presents admin panel</title>
   </head>
   <body>
@@ -10,12 +11,19 @@
       <input type="submit" value="Save" />
     </form>
 
-    <h1><a href='#' onclick='PresentsAPI.previous();'>&lt;-</a></h1>
-    <h1><a href='#' onclick='PresentsAPI.next();'>-&gt;</a></h1>
+    <div class="controls">
+      <a href='#' onclick='PresentsAPI.previous();'>&lt;-</a>
+      <a href='#' onclick='PresentsAPI.next();'>-&gt;</a>
+    </div>
+
+    <p id='timer' onclick='timerToggle();'>00:00</p>
 
     <script src='/admin/js/api.js'></script>
     <script>
-      var password = '';
+      var password = '',
+          timerInterval,
+          timerSeconds = 0,
+          timerMinutes = 0;
 
       function submitPassword() {
         password = document.getElementById('password').value;
@@ -23,6 +31,34 @@
         document.getElementById('passwordForm').style.display = 'none';
 
         return false;
+      }
+
+      function timerToggle() {
+        if (timerInterval) {
+          clearInterval(timerInterval);
+          timerInterval = null;
+        }
+        else {
+          timerInterval = setInterval(timerTick, 1000);
+        }
+      }
+
+      function timerTick() {
+        function pad(number) {
+          number = number.toString();
+          if (number.length === 1) {
+            number = '0' + number;
+          }
+          return number;
+        }
+
+        ++timerSeconds;
+        if (timerSeconds === 60) {
+          ++timerMinutes;
+          timerSeconds = 0;
+        }
+
+        document.getElementById('timer').innerText = pad(timerMinutes) + ':' + pad(timerSeconds);
       }
     </script>
   </body>
