@@ -5,13 +5,21 @@
     <title>Presents admin panel</title>
   </head>
   <body>
+    <form id="passwordForm" action="#" onsubmit="return submitPassword()">
+      <input id="password" type="password" placeholder="Password..." />
+      <input type="submit" value="Save" />
+    </form>
+
     <h1><a href='#' onclick='previous();'>&lt;-</a></h1>
     <h1><a href='#' onclick='next();'>-&gt;</a></h1>
 
     <script>
+      var password = '';
+
       function request(options, callback) {
         var req = new XMLHttpRequest();
         req.open(options.method, options.url, true);
+        req.setRequestHeader('authorization', 'Basic ' + btoa('presenter:' + password));
 
         req.onreadystatechange = function (e) {
           if (req.readyState === 4) {
@@ -34,6 +42,14 @@
           url: '/api/next',
           method: 'POST'
         });
+      }
+
+      function submitPassword() {
+        password = document.getElementById('password').value;
+
+        document.getElementById('passwordForm').style.display = 'none';
+
+        return false;
       }
     </script>
   </body>
