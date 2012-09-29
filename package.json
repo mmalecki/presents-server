@@ -6,8 +6,9 @@
   "dependencies": {
     "ws": "0.4.x",
     "union": "0.3.x",
-    "director": "1.0.x",
-    "ecstatic": "0.1.x"
+    "director": "1.1.x",
+    "ecstatic": "0.1.x",
+    "basic-auth-parser": "0.0.x"
   },
   "bin": {
     "presents-server": "./bin/presents-server"
