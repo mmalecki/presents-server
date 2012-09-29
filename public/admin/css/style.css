@@ -1,0 +1,9 @@
+.controls * {
+  display: inline;
+  font-size: 128px;
+}
+
+#timer {
+  margin: 2px;
+  font-size: 64px;
+}
