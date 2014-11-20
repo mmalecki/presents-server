@@ -16,50 +16,9 @@
       <a href='#' onclick='PresentsAPI.next();'>-&gt;</a>
     </div>
 
-    <p id='timer' onclick='timerToggle();'>00:00</p>
+    <p id='timer' onclick='ui.timerToggle();'>00:00</p>
 
     <script src='/admin/js/api.js'></script>
-    <script>
-      var password = '',
-          timerInterval,
-          timerSeconds = 0,
-          timerMinutes = 0;
-
-      function submitPassword() {
-        password = document.getElementById('password').value;
-
-        document.getElementById('passwordForm').style.display = 'none';
-
-        return false;
-      }
-
-      function timerToggle() {
-        if (timerInterval) {
-          clearInterval(timerInterval);
-          timerInterval = null;
-        }
-        else {
-          timerInterval = setInterval(timerTick, 1000);
-        }
-      }
-
-      function timerTick() {
-        function pad(number) {
-          number = number.toString();
-          if (number.length === 1) {
-            number = '0' + number;
-          }
-          return number;
-        }
-
-        ++timerSeconds;
-        if (timerSeconds === 60) {
-          ++timerMinutes;
-          timerSeconds = 0;
-        }
-
-        document.getElementById('timer').innerText = pad(timerMinutes) + ':' + pad(timerSeconds);
-      }
-    </script>
+    <script src='/admin/js/ui.js'></script>
   </body>
 </html>
